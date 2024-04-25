@@ -1,7 +1,8 @@
-#import 
+#imports
 from flask import redirect, render_template, request, session, url_for
 from app import User, app, db
 
+#registration route 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -16,6 +17,7 @@ def register():
 
     return render_template('register.html')
 
+#login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -29,4 +31,4 @@ def login():
         session['username'] = user.username
         return redirect(url_for('home'))
 
-    return render_template('login.html')
+    return render_template('home.html')

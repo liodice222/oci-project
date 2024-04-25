@@ -6,7 +6,15 @@
     <title>Home Page</title>
 </head>
 <body>
-    <form method="POST">
+    <form id="login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"> <br> 
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+    <h3> Search Database Here: </h3>
+    <form id = "search bar" method="POST">
         <input type="text" name="search" placeholder="Search">
         <input type="submit" value="Search">
     </form>
