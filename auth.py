@@ -1,6 +1,6 @@
 #imports
 from flask import redirect, render_template, request, session, url_for
-from instance.app import User, app, db
+from app import User, app, db
 
 #registration route 
 @app.route('/register', methods=['GET', 'POST'])
