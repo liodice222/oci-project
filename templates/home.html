@@ -7,7 +7,16 @@
     <link rel="stylesheet" type="text/css" href="home.css">
 </head>
 <body>
-    <form id="login" method="POST">
+    <nav>
+        <a href="register.html">Login</a>
+        <a href="register.html">Register Here</a>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/">Visit PubChem </a>
+    </nav>
+    <div>
+        <h3>Please Login before searching: </h3>
+    <br>
+    </div>
+    <form id="login" action="/login" method="POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username"> <br> 
         <label for="password">Password:</label>
