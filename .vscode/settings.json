@@ -1,5 +1,5 @@
-{
-    "python.analysis.extraPaths": [
-        "./instance"
-    ]
-}
+// {
+//     "python.analysis.extraPaths": [
+//         "./instance"
+//     ]
+// }
