@@ -1,6 +1,9 @@
 #imports
 from flask import redirect, render_template, request, session, url_for
-from app import User, app, db
+from app import app, db
+from models import User
+#for password hash 
+from werkzeug.security import generate_password_hash, check_password_hash
 
 #registration route 
 @app.route('/register', methods=['GET', 'POST'])
