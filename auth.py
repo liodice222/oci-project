@@ -23,15 +23,18 @@ def register():
 #login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    login_failed = None
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
         user = User.query.filter_by(username=username).first()
         if not user or not check_password_hash(user.password, password):
-            return redirect(url_for('login'))
+            login_failed = True
+        else:
+            login_failed = False
+            session['username'] = user.username
+        
+        return render_template('home.html', login_failed=login_failed)
 
-        session['username'] = user.username
-        return redirect(url_for('home'))
-
-    return render_template('home.html')
+    return render_template('home.html', login_failed=login_failed)
