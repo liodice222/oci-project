@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, session
 from app import app
+from db import db
 from models import User
 import requests
 
@@ -37,10 +38,11 @@ def search():
 
         # Extracting the IUPAC name, charge, and molecular weight
         for prop in props:
-            if prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
-                compound_data['iupac_name'] = prop['value']['sval']
-            elif prop['urn']['label'] == 'Molecular Weight':
-                compound_data['molecular_weight'] = prop['value']['sval']
+            if 'name' in prop['urn'] and 'label' in prop['urn']:
+                if prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
+                    compound_data['iupac_name'] = prop['value']['sval']
+                elif prop['urn']['label'] == 'Molecular Weight':
+                    compound_data['molecular_weight'] = prop['value']['sval']
 
         compound_data['charge'] = compound['charge']
 

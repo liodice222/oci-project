@@ -1,27 +1,36 @@
 #imports
-from flask import redirect, render_template, request, session, url_for
-from app import app, db
-from models import User
+from flask import redirect, render_template, request, session, url_for, Blueprint
+from db import db
+from models.User import User
 #for password hash 
 from werkzeug.security import generate_password_hash, check_password_hash
 
+#set up Blueprint
+auth = Blueprint('auth', __name__)
+
 #registration route 
-@app.route('/register', methods=['GET', 'POST'])
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        hashed_password = generate_password_hash(password, method='sha256')
+
+        #check if user already exists
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            return "User already exists, please go to Login page"
+        
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
 
     return render_template('register.html')
 
 #login route
-@app.route('/login', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_failed = None
     if request.method == 'POST':

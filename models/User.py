@@ -1,4 +1,4 @@
-from app import db 
+from db import db
 
 #set up user model to be stored in user database  
 class User(db.Model):
