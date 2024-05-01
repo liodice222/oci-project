@@ -5,6 +5,8 @@ from models import User
 import requests
 
 
+
+
 @app.route('/')
 def home():
     print("rendering home.html")
@@ -26,9 +28,6 @@ def search():
         print(f'An error occurred: {e}')
         response = None
 
-    # compound_info = response.json() if response and response.status_code == 200 else None
-    # print(f'API Response: {compound_info}')
-
     compound_info = response.json() if response and response.status_code == 200 else None
     compound_data = {}
 
@@ -46,9 +45,13 @@ def search():
 
         compound_data['charge'] = compound['charge']
 
+        
+
         # # Generate the molecule image
         # molecule = Chem.MolFromSmiles(search_query)
         # Draw.MolToFile(molecule, f'static/{search_query}.png')
+
+        
 
     print(f'API Response: {compound_data}')
 
