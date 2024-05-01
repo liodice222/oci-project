@@ -1,4 +1,4 @@
-
+const ReactDOM = require('react-dom/client')
 'use strict';
 
 const e = React.createElement;
@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div id = "search-container">
+      <div>
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.search} onChange={this.handleChange} placeholder="Search" />
           <input type="submit" value="Search" />
