@@ -35,12 +35,21 @@ def search():
         compound = compound_info['PC_Compounds'][0]
         props = compound['props']
 
-        # Extracting the IUPAC name, charge, and molecular weight
+        # Extracting the IUPAC name, charge, molecular weight, conformers, compound complexity 
         for prop in props:
             if 'name' in prop['urn'] and prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
                 compound_data['iupac_name'] = prop['value']['sval']
             elif 'label' in prop['urn'] and prop['urn']['label'] == 'Molecular Weight':
                 compound_data['molecular_weight'] = prop['value']['sval'] + ' g/mol'
+            elif 'label' in prop['urn'] and prop['urn']['label'] == 'Compound Complexity':
+                compound_data['compound_complexity'] = prop['value']['fval']
+                compound_data['complexity_datatype'] = prop['urn']['datatype']
+            elif 'name' in prop['urn'] and prop['urn']['name'] == 'Hydrogen Bond Donor':
+                compound_data['hydrogen_bond_donor'] = prop['value']['ival']
+                compound_data['donor_datatype'] = prop['urn']['datatype']
+            elif 'name' in prop['urn'] and prop['urn']['name'] == 'Hydrogen Bond Acceptor':
+                compound_data['hydrogen_bond_acceptor'] = prop['value']['ival']
+                compound_data['acceptor_datatype'] = prop['urn']['datatype']
 
         compound_data['charge'] = compound['charge']
 
@@ -52,7 +61,7 @@ def search():
                 compound_data['conformers'].append(conformer)
 
 
-        return render_template('compound_info.html', search_query=search_query, compound_info=compound_data)
+        return render_template('compound_info.html', search_query=search_query, compound_info=compound_data, username = username)
     else:
         return 'No compound information found'
     # print(f'API Response: {compound_data}')
