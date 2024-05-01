@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Compound Information for {{ search_query }}</h1>
+    <p><strong>IUPAC Name:</strong> {{ compound_info.iupac_name }}</p>
+    <p><strong>Molecular Weight:</strong> {{ compound_info.molecular_weight }}</p>
+    <p><strong>Charge:</strong> {{ compound_info.charge }}</p>
+    {% for conformer in compound_info.conformers %}
+        <h2>Conformer</h2>
+        <p><strong>X coordinates:</strong> {{ conformer.x }}</p>
+        <p><strong>Y coordinates:</strong> {{ conformer.y }}</p>
+    {% endfor %}
+</body>
+</html>

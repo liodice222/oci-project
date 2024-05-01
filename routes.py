@@ -37,23 +37,25 @@ def search():
 
         # Extracting the IUPAC name, charge, and molecular weight
         for prop in props:
-            if 'name' in prop['urn'] and 'label' in prop['urn']:
-                if prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
-                    compound_data['iupac_name'] = prop['value']['sval']
-                elif prop['urn']['label'] == 'Molecular Weight':
-                    compound_data['molecular_weight'] = prop['value']['sval']
+            if 'name' in prop['urn'] and prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
+                compound_data['iupac_name'] = prop['value']['sval']
+            elif 'label' in prop['urn'] and prop['urn']['label'] == 'Molecular Weight':
+                compound_data['molecular_weight'] = prop['value']['sval'] + ' g/mol'
 
         compound_data['charge'] = compound['charge']
 
-        
+        coords = compound['coords']
+        compound_data['conformers'] = []
+        for coord in coords:
+            for conformer in coord['conformers']:
+                conformer.pop('style', None)
+                compound_data['conformers'].append(conformer)
 
-        # # Generate the molecule image
-        # molecule = Chem.MolFromSmiles(search_query)
-        # Draw.MolToFile(molecule, f'static/{search_query}.png')
 
-        
+        return render_template('compound_info.html', search_query=search_query, compound_info=compound_data)
+    else:
+        return 'No compound information found'
+    # print(f'API Response: {compound_data}')
 
-    print(f'API Response: {compound_data}')
-
-    return {'username': username, 'search_query': search_query, 'compound_info': compound_data}
+    # return {'username': username, 'search_query': search_query, 'compound_info': compound_data}
 

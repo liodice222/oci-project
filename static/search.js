@@ -1,4 +1,5 @@
-const ReactDOM = require('react-dom/client')
+import React from 'react'
+import reactDOM from 'react-dom'
 'use strict';
 
 const e = React.createElement;
