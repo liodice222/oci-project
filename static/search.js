@@ -1,3 +1,4 @@
+
 'use strict';
 
 const e = React.createElement;
@@ -28,14 +29,14 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id = "search-container">
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.search} onChange={this.handleChange} placeholder="Search" />
           <input type="submit" value="Search" />
         </form>
         <div>
         {this.state.username && (
-          <div>
+          <div >
             <h2>{this.state.username}</h2>
             <p>Search query: {this.state.search_query}</p>
             <p>IUPAC Name: {this.state.results.iupac_name}</p>
@@ -49,4 +50,5 @@ class SearchBar extends React.Component {
 }
 
 const domContainer = document.querySelector('#search-container');
-ReactDOM.render(e(SearchBar), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(<SearchBar />);
