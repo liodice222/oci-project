@@ -1,3 +1,5 @@
 flask
 flask_SQLAlchemy
 python-dotenv
+requests
+Werkzeug
