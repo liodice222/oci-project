@@ -25,6 +25,8 @@
     <p><strong>Charge:</strong> {{ compound_info.charge }}</p>
     <p><strong>Compound Complexity:</strong> {{ compound_info.compound_complexity }}</p>
     <p><strong>Hydrogen Bond Donor, Acceptors </strong> {{ compound_info.hydrogen_bond_donor }} , {{ compound_info.hydrogen_bond_acceptor }}</p>
+    <p><strong>Isomeric SMILES Configuration </strong> {{ compound_info.smiles_isomeric }} </p>
+
     </div>
     <div class = "confromer">
         {% for conformer in compound_info.conformers %}

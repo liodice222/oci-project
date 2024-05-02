@@ -50,21 +50,21 @@ def search():
             elif 'name' in prop['urn'] and prop['urn']['name'] == 'Hydrogen Bond Acceptor':
                 compound_data['hydrogen_bond_acceptor'] = prop['value']['ival']
                 compound_data['acceptor_datatype'] = prop['urn']['datatype']
+            elif 'label' in prop['urn'] and prop['urn']['label'] == 'SMILES' and prop['urn']['name'] == 'Isomeric':
+                compound_data['smiles_isomeric'] = prop['value']['sval']
 
         compound_data['charge'] = compound['charge']
 
-        coords = compound['coords']
-        compound_data['conformers'] = []
-        for coord in coords:
-            for conformer in coord['conformers']:
-                conformer.pop('style', None)
-                compound_data['conformers'].append(conformer)
+        # coords = compound['coords']
+        # compound_data['conformers'] = []
+        # for coord in coords:
+        #     for conformer in coord['conformers']:
+        #         conformer.pop('style', None)
+        #         compound_data['conformers'].append(conformer)
 
 
         return render_template('compound_info.html', search_query=search_query, compound_info=compound_data, username = username)
     else:
         return 'No compound information found'
-    # print(f'API Response: {compound_data}')
 
-    # return {'username': username, 'search_query': search_query, 'compound_info': compound_data}
 
