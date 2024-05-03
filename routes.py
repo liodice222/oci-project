@@ -10,7 +10,7 @@ import requests
 @app.route('/')
 def home():
     print("rendering home.html")
-    return render_template('home.html')
+    return render_template('index.html')
 
 
 

@@ -49,6 +49,6 @@ def login():
             login_failed = False
             session['username'] = user.username
         
-        return render_template('home.html', login_failed=login_failed)
+        return render_template('index.html', login_failed=login_failed)
 
-    return render_template('home.html', login_failed=login_failed)
+    return render_template('index.html', login_failed=login_failed)
