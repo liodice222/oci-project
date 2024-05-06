@@ -4,6 +4,8 @@ from db import db
 from models.User import User
 #for password hash 
 from werkzeug.security import generate_password_hash, check_password_hash
+#for login functionality 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 
 #set up Blueprint
 auth = Blueprint('auth', __name__)
@@ -52,3 +54,10 @@ def login():
         return render_template('index.html', login_failed=login_failed)
 
     return render_template('index.html', login_failed=login_failed)
+
+#logout route 
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
