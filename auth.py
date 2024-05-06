@@ -49,7 +49,8 @@ def login():
             login_failed = True
         else:
             login_failed = False
-            session['username'] = user.username
+            #session['username'] = user.username
+            login_user(user)
         
         return render_template('index.html', login_failed=login_failed)
 
