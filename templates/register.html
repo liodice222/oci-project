@@ -12,11 +12,12 @@
         <a href="{{ url_for('auth.register')}}">Register Here</a>
         <a href="https://pubchem.ncbi.nlm.nih.gov/">Visit PubChem </a>
     </nav>
+    <h2> Register Here: </h2>
     <form id ="registration" action="/register" method="POST">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
+        <input type="text" placeholder="Enter Username" id="username" name="username">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
+        <input type="password" placeholder="Enter Password" id="password" name="password">
         <input type="submit" value="Register">
     </form>
     {% if message %}

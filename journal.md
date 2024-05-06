@@ -13,3 +13,5 @@ Complteded MVP today and maybe spent too much time trying to connect to a tool f
 
 5-2
 No coding after last push until  I get this deployed on OCI
+
+5-6 still had trouble with deployment over the weekend - doing some small changes here like updating login functionality before re-attempting deployment. I can deploy it as a static website but i haven't figured out how to deploy it on a wsgi. Also considering creating a separate db with usernames/passwords so that i can incorporate load balancing in deployment. 
