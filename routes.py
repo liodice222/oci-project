@@ -62,9 +62,13 @@ def search():
         #         conformer.pop('style', None)
         #         compound_data['conformers'].append(conformer)
 
+        # search_result = User.Search(user_id=user_id, search_query=search_query, search_result=str(compound_data))
+        # db.session.add(search_result)
+        # db.session.commit()
+
 
         return render_template('compound_info.html', search_query=search_query, compound_info=compound_data, username = username)
     else:
-        return 'No compound information found'
+        return render_template('return.html')
 
 

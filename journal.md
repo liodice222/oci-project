@@ -15,3 +15,5 @@ Complteded MVP today and maybe spent too much time trying to connect to a tool f
 No coding after last push until  I get this deployed on OCI
 
 5-6 still had trouble with deployment over the weekend - doing some small changes here like updating login functionality before re-attempting deployment. I can deploy it as a static website but i haven't figured out how to deploy it on a wsgi. Also considering creating a separate db with usernames/passwords so that i can incorporate load balancing in deployment. 
+
+5-7 finally got app deployed using nginx and gunicorn wsgi - today i added a new html page for when there is no compound information found, and attempting to create an analytics database and fix my login functionality. right now users can login but it's not secure, i would like to make a logout button and require sign in before being allowed to type into the search bar. 
