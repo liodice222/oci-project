@@ -13,6 +13,8 @@ app.register_blueprint(auth_blueprint)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+#debugging for secret key 
+print(f"Secret Key: {app.config['SECRET_KEY']}")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 
 

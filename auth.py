@@ -5,7 +5,7 @@ from models.User import User
 #for password hash 
 from werkzeug.security import generate_password_hash, check_password_hash
 #for login functionality 
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 #set up Blueprint
 auth = Blueprint('auth', __name__)
@@ -34,7 +34,7 @@ def register():
         db.session.commit()
         return redirect(url_for('auth.login', message="Registration Successful", already_user = already_user))
 
-    return render_template('register.html', already_user = already_user)
+    return render_template('register.html', already_user = already_user, current_user = current_user)
 
 #login route
 @auth.route('/login', methods=['GET', 'POST'])
