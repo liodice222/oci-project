@@ -3,3 +3,6 @@ flask_SQLAlchemy
 python-dotenv
 requests
 Werkzeug
+flask
+gunicorn
+flask_login
