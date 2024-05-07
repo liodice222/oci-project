@@ -3,6 +3,7 @@ from app import app
 from db import db
 from models import User
 import requests
+from flask_login import current_user
 
 
 
@@ -10,7 +11,7 @@ import requests
 @app.route('/')
 def home():
     print("rendering home.html")
-    return render_template('index.html')
+    return render_template('index.html', current_user = current_user)
 
 
 
@@ -67,7 +68,7 @@ def search():
         # db.session.commit()
 
 
-        return render_template('compound_info.html', search_query=search_query, compound_info=compound_data, username = username)
+        return render_template('compound_info.html', search_query=search_query, compound_info=compound_data, username = username, current_user = current_user)
     else:
         return render_template('return.html')
 
