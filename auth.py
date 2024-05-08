@@ -40,6 +40,7 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_failed = None
+    login_attempted = False
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -52,9 +53,9 @@ def login():
             #session['username'] = user.username
             login_user(user)
         
-        return render_template('index.html', login_failed=login_failed)
+        return render_template('index.html', login_failed=login_failed, login_attempted = login_attempted)
 
-    return render_template('index.html', login_failed=login_failed)
+    return render_template('index.html', login_failed=login_failed, login_attempted = login_attempted)
 
 #logout route 
 @auth.route('/logout')
