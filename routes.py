@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, session
 from app import app
 from db import db
-from models import User
+from models import User, Search
 import requests
 from flask_login import current_user
 
@@ -36,6 +36,26 @@ def search():
         compound = compound_info['PC_Compounds'][0]
         props = compound['props']
 
+    # point of improvement - I want to recreate the conditional statements into a for loop for easier readability 
+    #      property_map = {
+    #         ('Allowed', 'IUPAC Name'): 'iupac_name',
+    #         ('', 'Molecular Weight'): 'molecular_weight',
+    #         ('', 'Compound Complexity'): 'compound_complexity',
+    #         ('Hydrogen Bond Donor', ''): 'hydrogen_bond_donor',
+    #         ('Hydrogen Bond Acceptor', ''): 'hydrogen_bond_acceptor',
+    #         ('Isomeric', 'SMILES'): 'smiles_isomeric'
+    # }
+        
+    #     for prop in props:
+    #         key = (prop['urn'].get('name', ''), prop['urn'].get('label', ''))
+    #         if key in property_map:
+    #             compound_data[property_map[key]] = prop['value'].get('sval', prop['value'].get('fval', prop['value'].get('ival')))
+    #         if 'datatype' in prop['urn']:
+    #             compound_data[key[0] + '_datatype'] = prop['urn']['datatype']
+    #     compound_data['charge'] = compound['charge']
+
+
+
         # Extracting the IUPAC name, charge, molecular weight, conformers, compound complexity 
         for prop in props:
             if 'name' in prop['urn'] and prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
@@ -56,14 +76,9 @@ def search():
 
         compound_data['charge'] = compound['charge']
 
-        # coords = compound['coords']
-        # compound_data['conformers'] = []
-        # for coord in coords:
-        #     for conformer in coord['conformers']:
-        #         conformer.pop('style', None)
-        #         compound_data['conformers'].append(conformer)
 
-        # search_result = User.Search(user_id=user_id, search_query=search_query, search_result=str(compound_data))
+    # point of improvement: I want to be able to create a relationship with User and Search for an analytics database 
+        # search_result = Search(user_id=username, search_query=search_query, search_result=str(compound_data))
         # db.session.add(search_result)
         # db.session.commit()
 
