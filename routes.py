@@ -36,27 +36,15 @@ def search():
         compound = compound_info['PC_Compounds'][0]
         props = compound['props']
 
-    # point of improvement - I want to recreate the conditional statements into a for loop for easier readability 
+    # point of improvement - I want to recreate this for loop for easier readability 
     #      property_map = {
-    #         ('Allowed', 'IUPAC Name'): 'iupac_name',
-    #         ('', 'Molecular Weight'): 'molecular_weight',
-    #         ('', 'Compound Complexity'): 'compound_complexity',
-    #         ('Hydrogen Bond Donor', ''): 'hydrogen_bond_donor',
-    #         ('Hydrogen Bond Acceptor', ''): 'hydrogen_bond_acceptor',
-    #         ('Isomeric', 'SMILES'): 'smiles_isomeric'
-    # }
-        
+    #         ('Allowed', 'IUPAC Name'): 'iupac_name', ....  }
     #     for prop in props:
-    #         key = (prop['urn'].get('name', ''), prop['urn'].get('label', ''))
-    #         if key in property_map:
-    #             compound_data[property_map[key]] = prop['value'].get('sval', prop['value'].get('fval', prop['value'].get('ival')))
-    #         if 'datatype' in prop['urn']:
-    #             compound_data[key[0] + '_datatype'] = prop['urn']['datatype']
-    #     compound_data['charge'] = compound['charge']
+    #         key = (prop['urn'].get('name', ''), prop['urn'].get('label', '')) ...
+    
+    
 
-
-
-        # Extracting the IUPAC name, charge, molecular weight, conformers, compound complexity 
+        # Extracting the IUPAC name, charge, molecular weight, compound complexity 
         for prop in props:
             if 'name' in prop['urn'] and prop['urn']['name'] == 'Allowed' and prop['urn']['label'] == 'IUPAC Name':
                 compound_data['iupac_name'] = prop['value']['sval']

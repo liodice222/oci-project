@@ -42,6 +42,7 @@ def login():
     login_failed = None
     login_attempted = False
     if request.method == 'POST':
+        login_attempted = True
         username = request.form.get('username')
         password = request.form.get('password')
 
